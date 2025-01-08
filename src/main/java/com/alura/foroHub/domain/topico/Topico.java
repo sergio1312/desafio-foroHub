@@ -1,10 +1,7 @@
 package com.alura.foroHub.domain.topico;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -27,8 +24,30 @@ public class Topico {
     @Enumerated(EnumType.STRING)
     private Curso curso;
 
+    public Topico(DatosRegistroTopico datosRegistroTopico) {
+        this.titulo = datosRegistroTopico.titulo();
+        this.mensaje = datosRegistroTopico.mensaje();
+        this.fecha = LocalDateTime.now();
+        this.status = true;
+        this.autor = datosRegistroTopico.autor();
+        this.curso = datosRegistroTopico.curso();
+    }
 
+    public DatosRespuestaTopico actualizarDatos(DatosActualizarTopico datosActualizarTopico){
+        if (datosActualizarTopico.titulo() != null){
+            this.titulo = datosActualizarTopico.titulo();
+        }
+        if (datosActualizarTopico.mensaje() != null){
+            this.mensaje = datosActualizarTopico.mensaje();
+        }
+        if (datosActualizarTopico.autor() != null){
+            this.autor = datosActualizarTopico.autor();
+        }
+        if (datosActualizarTopico.curso() != null){
+            this.curso = datosActualizarTopico.curso();
+        }
 
-
+        return new DatosRespuestaTopico(this.id, this.titulo, this.mensaje, this.autor, this.curso.toString());
+    }
 
 }

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.alura</groupId>
-	<artifactId>foroHub</artifactId>
+	<artifactId>ForoHub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>foroHub</name>
 	<description>challenge de alura para hacer una api de un foro</description>
