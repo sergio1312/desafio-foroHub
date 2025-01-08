@@ -23,9 +23,9 @@ public class TopicoController {
     @PostMapping
     public ResponseEntity<DatosRespuestaTopico> registrarTopico(@RequestBody @Valid DatosRegistroTopico datosRegistroTopico, UriComponentsBuilder uriComponentsBuilder){
 
-        Topico topico = topicoRepsoitory.save(new Topico(datosRegistroTopico));
-        DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getAutor(), topico.getCurso().toString());
-        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        Topico tp = topicoRepsoitory.save(new Topico(datosRegistroTopico));
+        DatosRespuestaTopico datosRespuestaTopico = new DatosRespuestaTopico(tp.getId(), tp.getTitulo(), tp.getMensaje(), tp.getAutor(), tp.getCurso().toString());
+        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(tp.getId()).toUri();
 
         return ResponseEntity.created(url).body(datosRespuestaTopico);
     }
